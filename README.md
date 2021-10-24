@@ -46,12 +46,15 @@ ARGUMENTS
   FILE  Attachment file path
 
 OPTIONS
-  -c, --[no-]copy      Copy file into the entries attachments directory
-  -d, --date=date      [default: 2021-10-24] Date of the entry to attach to
-  -e, --[no-]embed     Embed the file in the entry markdown
-  -h, --help           show CLI help
-  -m, --[no-]metadata  Link file in the entries markdown metadata
-  -n, --number=number  [default: 1] Number of the entry to add attach to in case multiple entries per date exists
+  -c, --[no-]copy              Copy file into the entries attachments directory
+  -d, --date=date              [default: 2021-10-24] Date of the entry to attach to
+  -e, --[no-]embed             Embed the file in the entry markdown
+  -h, --help                   show CLI help
+  -j, --journalDir=journalDir  [default: ./] Custom journal directory path
+  -m, --[no-]metadata          Link file in the entries markdown metadata
+
+  -n, --number=number          [default: 1] Number of the entry to add attach to in case multiple entries per date
+                               exists
 
 EXAMPLE
   $ journal attach "/Users/someone/images/vacation.png"
@@ -68,8 +71,9 @@ USAGE
   $ journal entry
 
 OPTIONS
-  -d, --date=date  [default: 2021-10-24] Date of the entry in format YYYY-MM-DD
-  -h, --help       show CLI help
+  -d, --date=date              [default: 2021-10-24] Date of the entry in format YYYY-MM-DD
+  -h, --help                   show CLI help
+  -j, --journalDir=journalDir  [default: ./] Custom journal directory path
 
 EXAMPLE
   $ journal entry -d 2020-12-31

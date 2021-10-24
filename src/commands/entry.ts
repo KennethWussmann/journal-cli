@@ -4,14 +4,15 @@ import { join } from "path";
 import * as YAML from "yaml";
 import { Command, flags } from "@oclif/command";
 import { findFreePath, mkdir } from "../utils";
+import BaseCommand from "../base-command";
 
-export default class NewEntry extends Command {
+export default class NewEntry extends BaseCommand {
   static description = "Create a new journal entry for today or custom date";
 
   static examples = [`$ journal entry -d 2020-12-31`];
 
   static flags: Record<string, any> = {
-    help: flags.help({ char: "h" }),
+    ...BaseCommand.flags,
     date: flags.string({
       char: "d",
       description: "Date of the entry in format YYYY-MM-DD",
@@ -22,7 +23,7 @@ export default class NewEntry extends Command {
   async run() {
     const { flags } = this.parse(NewEntry);
     const entryDate = flags.date as string;
-    const entryPath = join("entries", entryDate);
+    const entryPath = join(flags.journalDir as string, entryDate);
     const entryMarkdownFilePath = await findFreePath(entryPath, entryDate);
 
     await mkdir(entryPath);

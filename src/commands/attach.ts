@@ -4,14 +4,15 @@ import { join, parse } from "path";
 import * as YAML from "yaml";
 import { Command, flags } from "@oclif/command";
 import { exists, findFreePath, getExt, mkdir, splitEntry } from "../utils";
+import BaseCommand from "../base-command";
 
-export default class AddAttachment extends Command {
+export default class AddAttachment extends BaseCommand {
   static description = "Attach a file to an entry";
 
   static examples = [`$ journal attach "/Users/someone/images/vacation.png"`];
 
   static flags: Record<string, any> = {
-    help: flags.help({ char: "h" }),
+    ...BaseCommand.flags,
     date: flags.string({
       char: "d",
       description: "Date of the entry to attach to",
@@ -50,9 +51,13 @@ export default class AddAttachment extends Command {
     const date = flags.date as string;
     const number = flags.number as number;
     const { embed, copy, metadata } = flags;
-    const attachmentsPath = join("entries", date, "attachments");
+    const attachmentsPath = join(
+      flags.journalDir as string,
+      date,
+      "attachments"
+    );
     const entryPath = join(
-      "entries",
+      flags.journalDir as string,
       date,
       `${date}${number > 1 ? `_${number}` : ""}.md`
     );
@@ -63,9 +68,14 @@ export default class AddAttachment extends Command {
       this.error(`Origin file ${args.file} does not exist`);
     }
 
+    if (!(await exists(entryPath))) {
+      this.error(`Entry file ${entryPath} does not exist`);
+    }
+
+    await mkdir(attachmentsPath);
+
     var embedFilePath = args.file;
     if (copy) {
-      await mkdir(attachmentsPath);
       const destinationFilePath = await findFreePath(
         attachmentsPath,
         attachmentFileName,
@@ -73,17 +83,13 @@ export default class AddAttachment extends Command {
         true
       );
       embedFilePath = destinationFilePath
-        .replace(join("entries", date), "")
+        .replace(join(flags.journalDir as string, date), "")
         .substring(1);
       await fs.copyFile(args.file, destinationFilePath);
       this.log(`Copied file to ${destinationFilePath}`);
     }
 
-    console.log(embedFilePath);
     if (metadata) {
-      if (!(await exists(entryPath))) {
-        this.error(`Entry file ${entryPath} does not exist`);
-      }
       const { metadata, text } = await splitEntry(entryPath);
       const updatedMetadata = {
         ...metadata,
