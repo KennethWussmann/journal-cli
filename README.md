@@ -9,8 +9,11 @@ A CLI tool for journaling your life as markdown files.
 
 <!-- toc -->
 
+- [journal-cli [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)[![Version](https://img.shields.io/npm/v/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![Downloads/week](https://img.shields.io/npm/dw/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![License](https://img.shields.io/npm/l/journal-cli.svg)](https://github.com/KennethWussmann/journal-cli/blob/master/package.json)](#journal-cli-oclifhttpsimgshieldsiobadgecli-oclif-brightgreensvghttpsoclifioversionhttpsimgshieldsionpmvjournal-clisvghttpsnpmjsorgpackagejournal-clidownloadsweekhttpsimgshieldsionpmdwjournal-clisvghttpsnpmjsorgpackagejournal-clilicensehttpsimgshieldsionpmljournal-clisvghttpsgithubcomkennethwussmannjournal-cliblobmasterpackagejson)
+- [Features](#features)
 - [Usage](#usage)
 - [Commands](#commands)
+- [Motivation](#motivation)
 <!-- tocstop -->
 
 # Usage
@@ -25,8 +28,34 @@ npx -g journal
 
 <!-- commands -->
 
+- [`journal add-attachment [FILE]`](#journal-add-attachment-file)
 - [`journal help [COMMAND]`](#journal-help-command)
 - [`journal new-entry`](#journal-new-entry)
+
+## `journal add-attachment [FILE]`
+
+Attach a file to an entry
+
+```
+USAGE
+  $ journal add-attachment [FILE]
+
+ARGUMENTS
+  FILE  Attachment file path
+
+OPTIONS
+  -c, --[no-]copy      Copy file into the entries attachments directory
+  -d, --date=date      [default: 2021-10-24] Date of the entry to attach to
+  -e, --[no-]embed     Embed the file in the entry markdown
+  -h, --help           show CLI help
+  -m, --[no-]metadata  Link file in the entries markdown metadata
+  -n, --number=number  [default: 1] Number of the entry to add attach to in case multiple entries per date exists
+
+EXAMPLE
+  $ journal add-attachment "/Users/someone/images/vacation.png"
+```
+
+_See code: [src/commands/add-attachment.ts](https://github.com/KennethWussmann/journal-cli/blob/v0.1.0/src/commands/add-attachment.ts)_
 
 ## `journal help [COMMAND]`
 
@@ -47,7 +76,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3
 
 ## `journal new-entry`
 
-describe the command here
+Create a new journal entry for today or custom date
 
 ```
 USAGE
@@ -61,7 +90,7 @@ EXAMPLE
   $ journal new-entry -d 2020-12-31
 ```
 
-_See code: [src/commands/new-entry.ts](https://github.com/KennethWussmann/journal/blob/v0.0.0/src/commands/new-entry.ts)_
+_See code: [src/commands/new-entry.ts](https://github.com/KennethWussmann/journal-cli/blob/v0.1.0/src/commands/new-entry.ts)_
 
 <!-- commandsstop -->
 
@@ -73,4 +102,4 @@ Often these journaling apps allow exporting all entries in an arbitrary unstanda
 As journaling may be something you do for your entire life the journaling app should also last that long.
 
 Hence, I created a CLI tool that can fulfil this requirement by using semi-standardized markdown files as a file storage of the journal entries.
-That way no matter what happens with the CLI journaling app, all entries can be read and won't lose formatting. On top, they are easy to use else were. They could be rendered as a Jekyll website or combined to PDFs. The files can be easily back-ed up, encrypted
+That way no matter what happens with the CLI journaling app, all entries can be read and won't lose formatting. On top, they are easy to use else were. They could be rendered as a Jekyll website or combined to PDFs. The files can be easily back-ed up, encrypted and version controlled.
