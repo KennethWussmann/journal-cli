@@ -1,0 +1,16 @@
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/pnpm-install
+      - run: pnpm format:check
+      - name: Ensure README.md is up-to-date
+        run: |
+          pnpm generate
+          git diff --quiet --exit-code --name-only README.md
+      - run: pnpm build

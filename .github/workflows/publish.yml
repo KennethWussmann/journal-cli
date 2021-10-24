@@ -1,0 +1,21 @@
+name: publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/pnpm-install
+      - name: Extract tag version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - run: pnpm build
+      - run: npm version --no-git-tag-version ${{ steps.get_version.outputs.VERSION }}
+      - name: Publishing CLI
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH }}

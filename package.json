@@ -45,10 +45,10 @@
   },
   "repository": "KennethWussmann/journal-cli",
   "scripts": {
-    "format": "prettier . --write",
-    "new-entry": "node ./bin/run new-entry",
-    "postpack": "rm -f oclif.manifest.json",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build": "rm -rf lib/ && tsc -b",
+    "dev": "./bin/run",
     "generate": "oclif-dev readme && pnpm format && git add README.md"
   },
   "types": "lib/index.d.ts"
