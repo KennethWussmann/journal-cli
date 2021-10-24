@@ -10,6 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/pnpm-install
+      - name: Ensure README.md is up-to-date
+        run: |
+          pnpm generate
+          git diff --quiet --exit-code --name-only README.md
       - name: Extract tag version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
