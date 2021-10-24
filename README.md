@@ -104,4 +104,4 @@ Often these journaling apps allow exporting all entries in an arbitrary unstanda
 As journaling may be something you do for your entire life the journaling app should also last that long.
 
 Hence, I created a CLI tool that can fulfil this requirement by using semi-standardized markdown files as a file storage of the journal entries.
-That way no matter what happens with the CLI journaling app, all entries can be read and won't lose formatting. On top, they are easy to use else were. They could be rendered as a Jekyll website or combined to PDFs. The files can be easily back-ed up, encrypted and version controlled.
+That way no matter what happens with the CLI journaling app, all entries can be read and won't lose formatting. On top, they are easy to use elsewhere. They could be rendered as a Jekyll website or combined to PDFs. The files can be easily back-ed up, encrypted and version controlled.
