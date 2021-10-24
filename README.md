@@ -1,11 +1,11 @@
-# journal [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)[![Version](https://img.shields.io/npm/v/journal.svg)](https://npmjs.org/package/journal)[![Downloads/week](https://img.shields.io/npm/dw/journal.svg)](https://npmjs.org/package/journal)[![License](https://img.shields.io/npm/l/journal.svg)](https://github.com/KennethWussmann/journal/blob/master/package.json)
+# journal-cli [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)[![Version](https://img.shields.io/npm/v/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![Downloads/week](https://img.shields.io/npm/dw/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![License](https://img.shields.io/npm/l/journal-cli.svg)](https://github.com/KennethWussmann/journal-cli/blob/master/package.json)
 
 A CLI tool for journaling your life as markdown files.
 
 # Features
 
 - [x] Manage journal entries as markdown files with a simple command line interface
-- [ ] Encrypt journal with a password
+- [ ] Encrypt journal with a password^
 
 <!-- toc -->
 

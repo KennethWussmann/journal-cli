@@ -1,11 +1,12 @@
 {
-  "name": "journal",
-  "version": "0.0.0",
+  "name": "journal-cli",
+  "version": "0.1.0",
   "author": "Kenneth Wußmann @KennethWussmann",
   "bin": {
-    "journal": "./bin/run"
+    "journal": "./bin/run",
+    "journal-cli": "./bin/run"
   },
-  "bugs": "https://github.com/KennethWussmann/journal/issues",
+  "bugs": "https://github.com/KennethWussmann/journal-cli/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
@@ -31,7 +32,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/KennethWussmann/journal",
+  "homepage": "https://github.com/KennethWussmann/journal-cli",
   "keywords": [],
   "license": "MIT",
   "main": "lib/index.js",
@@ -42,7 +43,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "KennethWussmann/journal",
+  "repository": "KennethWussmann/journal-cli",
   "scripts": {
     "format": "prettier . --write",
     "new-entry": "node ./bin/run new-entry",
