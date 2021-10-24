@@ -4,11 +4,6 @@
 
 A CLI tool for journaling your life as markdown files.
 
-# Features
-
-- [x] Manage journal entries as markdown files with a simple command line interface
-- [ ] Encrypt journal with a password^
-
 <!-- toc -->
 
 - [journal-cli](#journal-cli)
@@ -17,6 +12,11 @@ A CLI tool for journaling your life as markdown files.
 - [Commands](#commands)
 - [Motivation](#motivation)
 <!-- tocstop -->
+
+# Features
+
+- [x] Manage journal entries as markdown files with a simple command line interface
+- [ ] Encrypt journal with a password^
 
 # Usage
 
