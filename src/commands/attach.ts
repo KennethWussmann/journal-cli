@@ -46,74 +46,25 @@ export default class AddAttachment extends BaseCommand {
 
   static args = [{ name: "file", description: "Attachment file path" }];
 
-  async run() {
+  run = async () => {
     const { flags, args } = this.parse(AddAttachment);
-    const date = flags.date as string;
-    const number = flags.number as number;
-    const { embed, copy, metadata } = flags;
-    const attachmentsPath = join(
-      flags.journalDir as string,
-      date,
-      "attachments"
-    );
-    const entryPath = join(
-      flags.journalDir as string,
-      date,
-      `${date}${number > 1 ? `_${number}` : ""}.md`
-    );
-    const attachmentFileName = [parse(args.file).name, date, number].join("_");
-    const attachmentFileExtension = getExt(args.file);
-
-    if (!(await exists(args.file))) {
-      this.error(`Origin file ${args.file} does not exist`);
+    if (!args.file) {
+      this._help();
     }
-
-    if (!(await exists(entryPath))) {
-      this.error(`Entry file ${entryPath} does not exist`);
-    }
-
-    await mkdir(attachmentsPath);
-
-    var embedFilePath = args.file;
-    if (copy) {
-      const destinationFilePath = await findFreePath(
-        attachmentsPath,
-        attachmentFileName,
-        attachmentFileExtension,
-        true
+    try {
+      await this.journal!.attachFile(
+        args.file as string,
+        flags.date as string,
+        flags.number as number,
+        flags.embed as boolean,
+        flags.metadata as boolean,
+        flags.copy as boolean
       );
-      embedFilePath = destinationFilePath
-        .replace(join(flags.journalDir as string, date), "")
-        .substring(1);
-      await fs.copyFile(args.file, destinationFilePath);
-      this.log(`Copied file to ${destinationFilePath}`);
+      this.log(
+        `Attached file ${args.file} to entry ${flags.number} entry at ${flags.date}`
+      );
+    } catch (err: any) {
+      this.error(`Failed to attach file: ${err.message}`);
     }
-
-    if (metadata) {
-      const { metadata, text } = await splitEntry(entryPath);
-      const updatedMetadata = {
-        ...metadata,
-        attachments: [
-          ...(metadata.attachments ? metadata.attachments : []),
-          embedFilePath,
-        ],
-      };
-      const entryContent = [
-        "---",
-        YAML.stringify(updatedMetadata),
-        "---",
-        text,
-      ].join("\n");
-      await fs.writeFile(entryPath, entryContent);
-      this.log(`Added to attachments within entry ${entryPath}`);
-    }
-
-    if (embed) {
-      const entryContent = await fs.readFile(entryPath, "utf8");
-      await fs.writeFile(entryPath, `${entryContent}![](${embedFilePath})`);
-      this.log(`Embedded as image within entry ${entryPath}`);
-    }
-
-    this.log("Done!");
-  }
+  };
 }

@@ -20,25 +20,11 @@ export default class NewEntry extends BaseCommand {
     }),
   };
 
-  async run() {
+  run = async () => {
     const { flags } = this.parse(NewEntry);
-    const entryDate = flags.date as string;
-    const entryPath = join(flags.journalDir as string, entryDate);
-    const entryMarkdownFilePath = await findFreePath(entryPath, entryDate);
-
-    await mkdir(entryPath);
-
-    const entryMetadata = YAML.stringify({
-      timestamp: dayjs().toISOString(),
-      tags: [],
-      emotions: [],
-      attachments: [],
-    });
-
-    const entryContent = ["---", entryMetadata, "---", ""].join("\n");
-
-    await fs.writeFile(entryMarkdownFilePath, entryContent);
-
+    const entryMarkdownFilePath = await this.journal!.createEntry(
+      flags.date as string
+    );
     this.log(`Created entry ${entryMarkdownFilePath}`);
-  }
+  };
 }

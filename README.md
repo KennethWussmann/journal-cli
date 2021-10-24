@@ -36,6 +36,7 @@ npx -g journal
 - [`journal attach [FILE]`](#journal-attach-file)
 - [`journal entry`](#journal-entry)
 - [`journal help [COMMAND]`](#journal-help-command)
+- [`journal tui`](#journal-tui)
 
 ## `journal attach [FILE]`
 
@@ -100,6 +101,24 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
+
+## `journal tui`
+
+Start a terminal interface to manage journal
+
+```
+USAGE
+  $ journal tui
+
+OPTIONS
+  -h, --help                   show CLI help
+  -j, --journalDir=journalDir  [default: ./] Custom journal directory path
+
+EXAMPLE
+  $ journal tui
+```
+
+_See code: [src/commands/tui.ts](https://github.com/KennethWussmann/journal-cli/blob/v0.1.0/src/commands/tui.ts)_
 
 <!-- commandsstop -->
 
