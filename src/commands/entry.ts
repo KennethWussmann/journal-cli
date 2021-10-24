@@ -8,7 +8,7 @@ import { findFreePath, mkdir } from "../utils";
 export default class NewEntry extends Command {
   static description = "Create a new journal entry for today or custom date";
 
-  static examples = [`$ journal new-entry -d 2020-12-31`];
+  static examples = [`$ journal entry -d 2020-12-31`];
 
   static flags: Record<string, any> = {
     help: flags.help({ char: "h" }),

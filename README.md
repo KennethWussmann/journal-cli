@@ -1,4 +1,6 @@
-# journal-cli [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)[![Version](https://img.shields.io/npm/v/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![Downloads/week](https://img.shields.io/npm/dw/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![License](https://img.shields.io/npm/l/journal-cli.svg)](https://github.com/KennethWussmann/journal-cli/blob/master/package.json)
+# journal-cli
+
+[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)[![Version](https://img.shields.io/npm/v/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![Downloads/week](https://img.shields.io/npm/dw/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![License](https://img.shields.io/npm/l/journal-cli.svg)](https://github.com/KennethWussmann/journal-cli/blob/master/package.json)
 
 A CLI tool for journaling your life as markdown files.
 
@@ -9,7 +11,7 @@ A CLI tool for journaling your life as markdown files.
 
 <!-- toc -->
 
-- [journal-cli [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)[![Version](https://img.shields.io/npm/v/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![Downloads/week](https://img.shields.io/npm/dw/journal-cli.svg)](https://npmjs.org/package/journal-cli)[![License](https://img.shields.io/npm/l/journal-cli.svg)](https://github.com/KennethWussmann/journal-cli/blob/master/package.json)](#journal-cli-oclifhttpsimgshieldsiobadgecli-oclif-brightgreensvghttpsoclifioversionhttpsimgshieldsionpmvjournal-clisvghttpsnpmjsorgpackagejournal-clidownloadsweekhttpsimgshieldsionpmdwjournal-clisvghttpsnpmjsorgpackagejournal-clilicensehttpsimgshieldsionpmljournal-clisvghttpsgithubcomkennethwussmannjournal-cliblobmasterpackagejson)
+- [journal-cli](#journal-cli)
 - [Features](#features)
 - [Usage](#usage)
 - [Commands](#commands)
@@ -28,17 +30,17 @@ npx -g journal
 
 <!-- commands -->
 
-- [`journal add-attachment [FILE]`](#journal-add-attachment-file)
+- [`journal attach [FILE]`](#journal-attach-file)
+- [`journal entry`](#journal-entry)
 - [`journal help [COMMAND]`](#journal-help-command)
-- [`journal new-entry`](#journal-new-entry)
 
-## `journal add-attachment [FILE]`
+## `journal attach [FILE]`
 
 Attach a file to an entry
 
 ```
 USAGE
-  $ journal add-attachment [FILE]
+  $ journal attach [FILE]
 
 ARGUMENTS
   FILE  Attachment file path
@@ -52,10 +54,28 @@ OPTIONS
   -n, --number=number  [default: 1] Number of the entry to add attach to in case multiple entries per date exists
 
 EXAMPLE
-  $ journal add-attachment "/Users/someone/images/vacation.png"
+  $ journal attach "/Users/someone/images/vacation.png"
 ```
 
-_See code: [src/commands/add-attachment.ts](https://github.com/KennethWussmann/journal-cli/blob/v0.1.0/src/commands/add-attachment.ts)_
+_See code: [src/commands/attach.ts](https://github.com/KennethWussmann/journal-cli/blob/v0.1.0/src/commands/attach.ts)_
+
+## `journal entry`
+
+Create a new journal entry for today or custom date
+
+```
+USAGE
+  $ journal entry
+
+OPTIONS
+  -d, --date=date  [default: 2021-10-24] Date of the entry in format YYYY-MM-DD
+  -h, --help       show CLI help
+
+EXAMPLE
+  $ journal entry -d 2020-12-31
+```
+
+_See code: [src/commands/entry.ts](https://github.com/KennethWussmann/journal-cli/blob/v0.1.0/src/commands/entry.ts)_
 
 ## `journal help [COMMAND]`
 
@@ -73,24 +93,6 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
-
-## `journal new-entry`
-
-Create a new journal entry for today or custom date
-
-```
-USAGE
-  $ journal new-entry
-
-OPTIONS
-  -d, --date=date  [default: 2021-10-24] Date of the entry in format YYYY-MM-DD
-  -h, --help       show CLI help
-
-EXAMPLE
-  $ journal new-entry -d 2020-12-31
-```
-
-_See code: [src/commands/new-entry.ts](https://github.com/KennethWussmann/journal-cli/blob/v0.1.0/src/commands/new-entry.ts)_
 
 <!-- commandsstop -->
 

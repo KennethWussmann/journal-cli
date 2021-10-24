@@ -8,9 +8,7 @@ import { exists, findFreePath, getExt, mkdir, splitEntry } from "../utils";
 export default class AddAttachment extends Command {
   static description = "Attach a file to an entry";
 
-  static examples = [
-    `$ journal add-attachment "/Users/someone/images/vacation.png"`,
-  ];
+  static examples = [`$ journal attach "/Users/someone/images/vacation.png"`];
 
   static flags: Record<string, any> = {
     help: flags.help({ char: "h" }),
