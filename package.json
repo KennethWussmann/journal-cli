@@ -15,7 +15,7 @@
     "dayjs": "^1.10.7",
     "globby": "^10.0.2",
     "terminal-kit": "^2.1.8",
-    "tslib": "^1.14.1",
+    "tslib": "^2.4.0",
     "yaml": "^1.10.2"
   },
   "devDependencies": {
