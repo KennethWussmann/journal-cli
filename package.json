@@ -13,7 +13,7 @@
     "@oclif/errors": "^1.3.5",
     "@oclif/plugin-help": "^3.2.3",
     "dayjs": "^1.10.7",
-    "globby": "^10.0.2",
+    "globby": "^13.1.2",
     "terminal-kit": "^2.1.8",
     "tslib": "^1.14.1",
     "yaml": "^1.10.2"
